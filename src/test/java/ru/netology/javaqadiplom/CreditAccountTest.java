@@ -31,8 +31,9 @@ public class CreditAccountTest {
     @ParameterizedTest
     @CsvSource({
             "5000, 3000, 2000, true",
-            "5000, -3000, 5000, false",
-            "5000, 7000, 5000, false",
+            "5000, 7000, -2000, true",
+            "5000, 10000, -5000, true",
+            "5000, 10001, 5000, false",
             "5000, 5000, 0, true"
     })
     public void shouldTestPay(int initialBalance, int amount, int expectedBalance, boolean expectedResult) {
