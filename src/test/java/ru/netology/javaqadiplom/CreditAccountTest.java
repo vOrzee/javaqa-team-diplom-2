@@ -34,7 +34,9 @@ public class CreditAccountTest {
             "5000, 7000, -2000, true",
             "5000, 10000, -5000, true",
             "5000, 10001, 5000, false",
-            "5000, 5000, 0, true"
+            "5000, 5000, 0, true",
+            "5000, -1, 5000, false",
+            "5000, 0, 5000, false",
     })
     public void shouldTestPay(int initialBalance, int amount, int expectedBalance, boolean expectedResult) {
         CreditAccount account = new CreditAccount(initialBalance, 5000, 15);
