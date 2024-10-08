@@ -65,7 +65,13 @@ public class CreditAccountTest {
             "0, 15, 0"
     })
     public void shouldTestYearChange(int balance, int rate, int expectedChange) {
-        CreditAccount account = new CreditAccount(balance, 5000, rate);
+        CreditAccount account;
+        if (balance < 0) {
+            account = new CreditAccount(-balance, 5000, rate);
+            account.pay(-balance * 2);
+        } else {
+            account = new CreditAccount(balance, 5000, rate);
+        }
         int result = account.yearChange();
         Assertions.assertEquals(expectedChange, result);
     }
