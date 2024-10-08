@@ -49,7 +49,7 @@ public class SavingAccount extends Account {
         if (balance >= minBalance) {
             return true;
         } else {
-            balance += amount; // Откатываем изменения
+            balance += amount; // Откатываем изменения, №9 и №10
             return false;
         }
     }
