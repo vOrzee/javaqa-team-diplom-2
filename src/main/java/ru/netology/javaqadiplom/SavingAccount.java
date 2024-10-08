@@ -70,8 +70,8 @@ public class SavingAccount extends Account {
         if (amount <= 0) {
             return false;
         }
-        if (balance + amount < maxBalance) {
-            balance += amount;
+        if (balance + amount <= maxBalance) {
+            balance += amount; // Добавляем к балансу, а не приравниваем
             return true;
         } else {
             return false;
