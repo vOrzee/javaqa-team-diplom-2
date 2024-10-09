@@ -17,7 +17,7 @@ public class CreditAccount extends Account {
      * @param rate - неотрицательное число, ставка кредитования для расчёта долга за отрицательный баланс
      */
     public CreditAccount(int initialBalance, int creditLimit, int rate) {
-        if (rate <= 0 || creditLimit <= 0 || initialBalance <=0) { // Добавлены поля для кредитного лимита и
+        if (rate < 0 || creditLimit < 0 || initialBalance <0) { // Добавлены поля для кредитного лимита и
             throw new IllegalArgumentException(                    //     и текущего баланса
                     "Накопительная ставка не может быть отрицательной, а у вас: " + rate
             );
