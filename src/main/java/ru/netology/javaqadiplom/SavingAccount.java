@@ -20,7 +20,7 @@ public class SavingAccount extends Account {
      * @param rate - неотрицательное число, ставка в процентах годовых на остаток
      */
     public SavingAccount(int initialBalance, int minBalance, int maxBalance, int rate) {
-        if (rate < 0) {
+        if (rate < 0 || initialBalance < 0 || minBalance < 0 || maxBalance < 0) { // Добавили проверку для всех полей
             throw new IllegalArgumentException(
               "Накопительная ставка не может быть отрицательной, а у вас: " + rate
             );
@@ -46,9 +46,10 @@ public class SavingAccount extends Account {
             return false;
         }
         balance = balance - amount;
-        if (balance > minBalance) {
+        if (balance >= minBalance) {
             return true;
         } else {
+            balance += amount; // Откатываем изменения, №9 и №10
             return false;
         }
     }
@@ -69,8 +70,8 @@ public class SavingAccount extends Account {
         if (amount <= 0) {
             return false;
         }
-        if (balance + amount < maxBalance) {
-            balance = amount;
+        if (balance + amount <= maxBalance) {
+            balance += amount; // Добавляем к балансу, а не приравниваем
             return true;
         } else {
             return false;
