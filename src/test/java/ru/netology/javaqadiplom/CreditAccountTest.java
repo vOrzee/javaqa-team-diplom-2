@@ -9,23 +9,32 @@ public class CreditAccountTest {
 
     @Test
     public void shouldThrowExceptionForNegativeRate() {
-        Assertions.assertThrows(IllegalArgumentException.class, () ->
-            new CreditAccount(1000, 5000, -10)
+        int rate = -10;
+        IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () ->
+            new CreditAccount(1000, 5000, rate)
         );
+        String expectedMessage = "Накопительная ставка не может быть отрицательной, а у вас: " + rate;
+        Assertions.assertEquals(expectedMessage, exception.getMessage());
     }
 
     @Test
     public void shouldThrowExceptionForNegativeCreditLimit() {
-        Assertions.assertThrows(IllegalArgumentException.class, () ->
-            new CreditAccount(1000, -5000, 15)
+        int creditLimit= -5000;
+        IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () ->
+            new CreditAccount(1000, creditLimit, 15)
         );
+        String expectedMessage = "Кредитный лимит не может быть отрицательной, а у вас: " + creditLimit;
+        Assertions.assertEquals(expectedMessage, exception.getMessage());
     }
 
     @Test
     public void shouldThrowExceptionForNegativeInitialBalance() {
-        Assertions.assertThrows(IllegalArgumentException.class, () ->
-            new CreditAccount(-1000, 5000, 15)
+        int initialBalance = -1000;
+        IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () ->
+            new CreditAccount(initialBalance, 5000, 15)
         );
+        String expectedMessage = "Начальный баланс не может быть отрицательной, а у вас: " + initialBalance;
+        Assertions.assertEquals(expectedMessage, exception.getMessage());
     }
 
     @ParameterizedTest
@@ -62,7 +71,8 @@ public class CreditAccountTest {
     @CsvSource({
             "-200, 15, -30",
             "200, 15, 0",
-            "0, 15, 0"
+            "0, 15, 0",
+            "-99, 15, -14"
     })
     public void shouldTestYearChange(int balance, int rate, int expectedChange) {
         CreditAccount account;
