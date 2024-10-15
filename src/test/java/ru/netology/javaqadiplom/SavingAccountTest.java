@@ -153,4 +153,17 @@ public class SavingAccountTest {
 
         Assertions.assertEquals(0, account.yearChange());
     }
+
+    @Test
+    public void yearChange() {
+        SavingAccount account = new SavingAccount(
+                99,
+                2_000,
+                10_000,
+                80
+        );
+        account.yearChange();
+
+        Assertions.assertEquals(79, account.yearChange());
+    }
 }
