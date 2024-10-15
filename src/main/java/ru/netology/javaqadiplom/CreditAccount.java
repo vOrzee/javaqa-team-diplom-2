@@ -81,7 +81,7 @@ public class CreditAccount extends Account {
     @Override
     public int yearChange() {
         if (balance < 0) { //Рассчёт процентов на отрицательный баланс
-            return balance / 100 * rate;
+            return balance * rate / 100; //Внёс изменение в метод из за особенностей целочисленного округления
         }
         return 0;
     }
