@@ -27,12 +27,12 @@ public class CreditAccount extends Account {
             throw new IllegalArgumentException(
                     "Кредитный лимит не может быть отрицательной, а у вас: " + creditLimit
             );
-        }
+        }                      // Добавлено исключение для лимита
         if (initialBalance < 0) {
             throw new IllegalArgumentException(
                     "Начальный баланс не может быть отрицательной, а у вас: " + initialBalance
             );
-        }                     // Добавлены исключения для лимита и баланса
+        }                     // Добавлено исключение для баланса
 
         this.balance = initialBalance;
         this.creditLimit = creditLimit;
